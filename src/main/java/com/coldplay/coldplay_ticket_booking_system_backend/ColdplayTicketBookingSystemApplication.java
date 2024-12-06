@@ -1,4 +1,4 @@
-package com.coldplay.coldplay_ticket_booking_system;
+package com.coldplay.coldplay_ticket_booking_system_backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
