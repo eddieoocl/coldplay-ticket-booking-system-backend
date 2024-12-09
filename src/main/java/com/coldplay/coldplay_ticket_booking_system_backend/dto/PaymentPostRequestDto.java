@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TestPostRequestDto {
+public class PaymentPostRequestDto {
     private String name;
 }

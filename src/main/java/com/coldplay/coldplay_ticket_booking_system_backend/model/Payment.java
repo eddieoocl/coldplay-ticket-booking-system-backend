@@ -11,10 +11,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Test {
+public class Payment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
-
+    private String paymentMethod;
+    private Double amount;
+    private String cardNumber;
+    private String expirationDate;
+    private String cvv;
 }
