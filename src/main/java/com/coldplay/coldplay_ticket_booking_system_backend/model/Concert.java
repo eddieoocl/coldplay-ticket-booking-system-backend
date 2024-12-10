@@ -1,9 +1,6 @@
 package com.coldplay.coldplay_ticket_booking_system_backend.model;
 
-<<<<<<< HEAD
-=======
 import com.fasterxml.jackson.annotation.JsonFormat;
->>>>>>> View_&_Select_Concert_List
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,23 +30,9 @@ public class Concert {
     @Column(nullable = false)
     private String venue;
 
-    private String city;
-
     private String country;
 
     @Column(columnDefinition = "TEXT")
-    private String description;
-
-    private String imageUrl;
-
-    private LocalDateTime ticketSaleStart;
-
-    private LocalDateTime ticketSaleEnd;
-
-    @Column(nullable = false)
-    private Integer totalSeats;
-=======
-    private String country;
     private String description;
     private String imageUrl;
 
@@ -61,5 +44,4 @@ public class Concert {
 
     @Column(nullable = false)
     private int totalSeats;
->>>>>>> View_&_Select_Concert_List
 }
