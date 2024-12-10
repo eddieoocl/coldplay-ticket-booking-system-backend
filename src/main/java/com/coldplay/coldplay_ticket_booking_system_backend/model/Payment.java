@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -22,4 +24,6 @@ public class Payment {
     private String cardNumber;
     private String expirationDate;
     private String cvv;
+
+
 }
