@@ -11,5 +11,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  flyway:
+    baseline-on-migrate: true
 frontend:
   url: ${FRONTEND_URL}
