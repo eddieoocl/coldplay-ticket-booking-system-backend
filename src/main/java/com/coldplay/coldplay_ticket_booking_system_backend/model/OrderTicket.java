@@ -30,5 +30,6 @@ public class OrderTicket {
     @Column(nullable = false)
     private Double price;
 
+    private String moviegoer;
 
 }
