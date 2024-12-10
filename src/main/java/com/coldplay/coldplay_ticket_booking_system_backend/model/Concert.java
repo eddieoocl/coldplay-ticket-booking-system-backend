@@ -30,6 +30,7 @@ public class Concert {
     @Column(nullable = false)
     private String venue;
 
+    private String city;
     private String country;
 
     @Column(columnDefinition = "TEXT")
