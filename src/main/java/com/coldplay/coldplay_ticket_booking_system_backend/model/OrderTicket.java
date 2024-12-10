@@ -29,4 +29,6 @@ public class OrderTicket {
 
     @Column(nullable = false)
     private Double price;
+
+
 }
