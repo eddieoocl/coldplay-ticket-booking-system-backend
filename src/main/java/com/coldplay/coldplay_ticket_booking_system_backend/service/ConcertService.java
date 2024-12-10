@@ -25,7 +25,9 @@ public class ConcertService {
     }
 
     public List<ConcertResponse> getAllConcertResponses() {
-        List<Concert> concerts = getAllConcerts();
+        List<Concert> concerts = getAllConcerts().stream()
+                .sorted((c1, c2) -> c2.getDate().compareTo(c1.getDate()))
+                .toList();
         return concerts.stream().map(this::convertToDto).toList();
     }
 
@@ -41,7 +43,7 @@ public class ConcertService {
         dto.setYear(String.valueOf(concert.getDate().getYear()));
         dto.setVenue(concert.getVenue());
         dto.setLocation(concert.getCity() + ", " + concert.getCountry());
-        dto.setStatus("SOLD OUT");
+        dto.setStatus(concert.getStatus());
         return dto;
     }
 
@@ -58,7 +60,7 @@ public class ConcertService {
         dto.setTicketSaleStart(concert.getTicketSaleStart().format(DateTimeFormatter.ofPattern("MMMM d, yyyy HH:mm", Locale.ENGLISH)));
         dto.setTicketSaleEnd(concert.getTicketSaleEnd().format(DateTimeFormatter.ofPattern("MMMM d, yyyy HH:mm", Locale.ENGLISH)));
         dto.setTotalSeats(concert.getTotalSeats());
-        dto.setStatus("SOLD OUT");
+        dto.setStatus(concert.getStatus());
         return dto;
     }
 }

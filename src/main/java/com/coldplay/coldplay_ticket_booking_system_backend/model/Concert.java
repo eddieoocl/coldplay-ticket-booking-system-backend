@@ -45,4 +45,6 @@ public class Concert {
 
     @Column(nullable = false)
     private int totalSeats;
+
+    private String status;
 }

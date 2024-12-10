@@ -1,0 +1,3 @@
+ALTER TABLE Concerts
+    ADD COLUMN status VARCHAR(30) DEFAULT 'SOLD OUT';
+
