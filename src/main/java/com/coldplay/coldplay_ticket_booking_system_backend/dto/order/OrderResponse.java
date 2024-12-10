@@ -24,6 +24,7 @@ public class OrderResponse {
         private String ticketType;
         private String moviegoer;
         private String ticketNumber;
+        private Double price;
     }
 
     @Data
@@ -31,6 +32,7 @@ public class OrderResponse {
     @NoArgsConstructor
     public static class MerchandiseInfo {
         private String merchandiseName;
+        private Double price;
         private int count;
     }
 }

@@ -90,6 +90,7 @@ public class OrderService {
             OrderResponse.TicketInfo ticketInfo = new OrderResponse.TicketInfo();
             ticketInfo.setTicketType(ticket.getTicketType().getTypeName());
             ticketInfo.setMoviegoer(ticket.getMoviegoer());
+            ticketInfo.setPrice(ticket.getPrice());
 
             Integer orderTicketId = ticket.getOrderTicketId();
 
@@ -103,6 +104,7 @@ public class OrderService {
         List<OrderResponse.MerchandiseInfo> merchandiseInfoList = orderMerchandise.stream().map(merchandise -> {
             OrderResponse.MerchandiseInfo merchandiseInfo = new OrderResponse.MerchandiseInfo();
             merchandiseInfo.setMerchandiseName(merchandise.getMerchandise().getName());
+            merchandiseInfo.setPrice(merchandise.getPrice());
             merchandiseInfo.setCount(merchandise.getQuantity());
             return merchandiseInfo;
         }).toList();
