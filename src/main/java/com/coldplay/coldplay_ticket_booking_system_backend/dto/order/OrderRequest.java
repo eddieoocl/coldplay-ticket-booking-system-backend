@@ -7,14 +7,13 @@ import java.util.List;
 @Data
 public class OrderRequest {
     private Integer userId;
-    private String phoneNumber;
     private List<TicketInfo> ticketInfo;
     private List<MerchandiseInfo> merchandiseInfo;
 
     @Data
     public static class TicketInfo {
         private Integer ticketTypeId;
-        private String moviegoer;
+        private Integer count;
     }
 
     @Data

@@ -11,30 +11,45 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderResponse {
     private String orderId;
-    private String totalPrices;
+    private String concertId;
     private String orderTime;
-    private String orderStatus;
+    private String totalPrices;
+    private String paymentMethod;
+    private String paymentStatus;
     private List<TicketInfo> ticketInfo;
     private List<MerchandiseInfo> merchandiseInfo;
+    private ConcertData concertData;
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
     public static class TicketInfo {
-        private Integer id;
+        private String id;
         private String ticketType;
-        private String moviegoer;
-        private String ticketNumber;
-        private Double price;
+        private String price;
+        private String seat;
     }
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
     public static class MerchandiseInfo {
-        private Integer merchandiseId;
+        private String merchandiseId;
         private String merchandiseName;
         private Double price;
         private int count;
+        private boolean isCharity;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ConcertData {
+        private String id;
+        private String name;
+        private String date;
+        private String time;
+        private String venue;
+        private String address;
     }
 }

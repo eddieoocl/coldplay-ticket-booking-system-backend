@@ -36,4 +36,6 @@ public class Merchandise {
     private Integer availableQuantity;
 
     private String imageUrl;
+
+    private Boolean isCharity;
 }

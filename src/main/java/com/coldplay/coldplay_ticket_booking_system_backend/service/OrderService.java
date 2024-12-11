@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -36,7 +37,7 @@ public class OrderService {
         order.setOrderDate(LocalDateTime.now());
         order.setTotalPrice(0.0); // This will be updated later
         order.setStatus("PENDING");
-        order.setPaymentMethod("UNPAID");
+        order.setPaymentMethod("paypal");
         orderRepository.save(order);
 
         double totalPrice = 0.0;
@@ -49,7 +50,7 @@ public class OrderService {
             orderTicket.setOrder(order);
             orderTicket.setTicketType(ticketType);
             orderTicket.setQuantity(1); // Assuming 1 ticket per moviegoer
-            orderTicket.setMoviegoer(ticketInfo.getMoviegoer());
+            orderTicket.setMoviegoer(null);
             orderTicket.setPrice(ticketType.getPrice());
             orderTicketRepository.save(orderTicket);
 
@@ -84,20 +85,34 @@ public class OrderService {
         orderResponse.setOrderId(orderId.toString());
         orderResponse.setTotalPrices(order.getTotalPrice().toString());
         orderResponse.setOrderTime(order.getOrderDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-        orderResponse.setOrderStatus(order.getStatus());
+        orderResponse.setPaymentMethod(order.getPaymentMethod());
+        orderResponse.setPaymentStatus(order.getStatus());
 
         List<OrderTicket> orderTicket = orderTicketRepository.findByOrder_OrderId(orderId);
+        Integer ticketTypeId = orderTicket.get(0).getTicketType().getTicketTypeId();
+        Optional<TicketType> ticketType = ticketTypeRepository.findById(ticketTypeId);
+        if(ticketType.isPresent()){
+            Concert concert = ticketType.get().getConcert();
+            OrderResponse.ConcertData concertData = new OrderResponse.ConcertData();
+            concertData.setId(concert.getConcertId().toString());
+            concertData.setName(concert.getName());
+            concertData.setDate(concert.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            concertData.setTime(concert.getDate().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+            concertData.setVenue(concert.getVenue());
+            concertData.setAddress(concert.getCountry() + concert.getCity());
+            orderResponse.setConcertData(concertData);
+        }
+
         List<OrderResponse.TicketInfo> ticketInfoList = orderTicket.stream().map(ticket -> {
             OrderResponse.TicketInfo ticketInfo = new OrderResponse.TicketInfo();
-            ticketInfo.setId(ticket.getOrderTicketId());
+            ticketInfo.setId(ticket.getOrderTicketId().toString());
             ticketInfo.setTicketType(ticket.getTicketType().getTypeName());
-            ticketInfo.setMoviegoer(ticket.getMoviegoer());
-            ticketInfo.setPrice(ticket.getPrice());
+            ticketInfo.setPrice(ticket.getPrice().toString());
 
             Integer orderTicketId = ticket.getOrderTicketId();
 
             List<Ticket> tickets = ticketRepository.findByOrderTicketOrderTicketId(orderTicketId);
-            ticketInfo.setTicketNumber(tickets.isEmpty() ? null : tickets.get(0).getTicketNumber());
+            ticketInfo.setSeat(tickets.isEmpty() ? null : tickets.get(0).getSeatNumber());
             return ticketInfo;
         }).toList();
         orderResponse.setTicketInfo(ticketInfoList);
@@ -105,7 +120,7 @@ public class OrderService {
         List<OrderMerchandise> orderMerchandise = orderMerchandiseRepository.findByOrder_OrderId(orderId);
         List<OrderResponse.MerchandiseInfo> merchandiseInfoList = orderMerchandise.stream().map(merchandise -> {
             OrderResponse.MerchandiseInfo merchandiseInfo = new OrderResponse.MerchandiseInfo();
-            merchandiseInfo.setMerchandiseId(merchandise.getMerchandise().getMerchandiseId());
+            merchandiseInfo.setMerchandiseId(merchandise.getMerchandise().getMerchandiseId().toString());
             merchandiseInfo.setMerchandiseName(merchandise.getMerchandise().getName());
             merchandiseInfo.setPrice(merchandise.getPrice());
             merchandiseInfo.setCount(merchandise.getQuantity());

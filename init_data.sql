@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS Users, Concerts, Ticket_Types, Ticket_Inventory, Orders, Order_Tickets, Payments, Tickets, Merchandise, Order_Merchandise;
+DROP TABLE IF EXISTS users, concerts, ticket_types, ticket_inventory, orders, order_tickets, payments, tickets, merchandise, order_merchandise;
 
-CREATE TABLE Users
+CREATE TABLE users
 (
     user_id    INT PRIMARY KEY AUTO_INCREMENT,     -- 用户ID
     username   VARCHAR(100) NOT NULL UNIQUE,       -- 用户名
@@ -14,7 +14,7 @@ CREATE TABLE Users
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 注册时间
 );
 
-CREATE TABLE Concerts
+CREATE TABLE concerts
 (
     concert_id        INT PRIMARY KEY AUTO_INCREMENT, -- 演唱会ID
     name              VARCHAR(255) NOT NULL,          -- 演唱会名称
@@ -30,7 +30,7 @@ CREATE TABLE Concerts
     status            VARCHAR(30) DEFAULT 'SOLD OUT'  -- 演唱会状态
 );
 
-CREATE TABLE Ticket_Types
+CREATE TABLE ticket_types
 (
     ticket_type_id INT PRIMARY KEY AUTO_INCREMENT,            -- 票种ID
     concert_id     INT,                                       -- 演唱会ID（外键）
@@ -39,7 +39,7 @@ CREATE TABLE Ticket_Types
     FOREIGN KEY (concert_id) REFERENCES Concerts (concert_id) -- 外键关联演唱会表
 );
 
-CREATE TABLE Ticket_Inventory
+CREATE TABLE ticket_inventory
 (
     ticket_inventory_id INT PRIMARY KEY AUTO_INCREMENT,                   -- 库存ID
     ticket_type_id      INT,                                              -- 票种ID（外键）
@@ -48,7 +48,7 @@ CREATE TABLE Ticket_Inventory
     FOREIGN KEY (ticket_type_id) REFERENCES Ticket_Types (ticket_type_id) -- 外键关联票种表
 );
 
-CREATE TABLE Orders
+CREATE TABLE orders
 (
     order_id       INT PRIMARY KEY AUTO_INCREMENT,        -- 订单ID
     user_id        INT,                                   -- 用户ID（外键）
@@ -59,7 +59,7 @@ CREATE TABLE Orders
     FOREIGN KEY (user_id) REFERENCES Users (user_id)      -- 外键关联用户表
 );
 
-CREATE TABLE Order_Tickets
+CREATE TABLE order_tickets
 (
     order_ticket_id INT PRIMARY KEY AUTO_INCREMENT,                       -- 订单项ID
     order_id        INT,                                                  -- 订单ID（外键）
@@ -70,7 +70,7 @@ CREATE TABLE Order_Tickets
     FOREIGN KEY (ticket_type_id) REFERENCES Ticket_Types (ticket_type_id) -- 外键关联票务表
 );
 
-CREATE TABLE Payments
+CREATE TABLE payments
 (
     payment_id     INT PRIMARY KEY AUTO_INCREMENT,        -- 支付ID
     order_id       INT,                                   -- 订单ID（外键）
@@ -81,7 +81,7 @@ CREATE TABLE Payments
     FOREIGN KEY (order_id) REFERENCES Orders (order_id)   -- 外键关联订单表
 );
 
-CREATE TABLE Tickets
+CREATE TABLE tickets
 (
     ticket_id     INT PRIMARY KEY AUTO_INCREMENT,                           -- 门票ID
     order_item_id INT,                                                      -- 订单项ID（外键）
@@ -94,7 +94,7 @@ CREATE TABLE Tickets
     FOREIGN KEY (user_id) REFERENCES Users (user_id)                        -- 外键关联用户表
 );
 
-CREATE TABLE Merchandise
+CREATE TABLE merchandise
 (
     merchandise_id     INT PRIMARY KEY AUTO_INCREMENT,        -- 商品ID
     concert_id         INT,                                   -- 演唱会ID（外键）
@@ -107,7 +107,7 @@ CREATE TABLE Merchandise
     FOREIGN KEY (concert_id) REFERENCES Concerts (concert_id) -- 外键关联演唱会表
 );
 
-CREATE TABLE Order_Merchandise
+CREATE TABLE order_merchandise
 (
     order_merchandise_id INT PRIMARY KEY AUTO_INCREMENT,                 -- 订单商品ID
     order_id             INT,                                            -- 订单ID（外键）
@@ -119,13 +119,13 @@ CREATE TABLE Order_Merchandise
 );
 
 -- Insert initial data into Users table
-INSERT INTO Users (username, email, phone, password, first_name, last_name, city, country)
+INSERT INTO users (username, email, phone, password, first_name, last_name, city, country)
 VALUES ('john_doe', 'john.doe@example.com', '1234567890', 'encrypted_password1', 'John', 'Doe', 'New York', 'USA'),
        ('jane_smith', 'jane.smith@example.com', '0987654321', 'encrypted_password2', 'Jane', 'Smith', 'Los Angeles',
         'USA');
 
 -- Insert initial data into Concerts table
-INSERT INTO Concerts (name, date, venue, city, country, description, image_url, ticket_sale_start, ticket_sale_end,
+INSERT INTO concerts (name, date, venue, city, country, description, image_url, ticket_sale_start, ticket_sale_end,
                       total_seats, status)
 VALUES ('Coldplay Live', '2025-02-22 20:00:00', 'Zayed Sports City Stadium', 'Abu Dhabi', 'USA',
         'Coldplay live concert', 'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/20231008144859_27550.png',
@@ -147,7 +147,7 @@ VALUES ('Coldplay Live', '2025-02-22 20:00:00', 'Zayed Sports City Stadium', 'Ab
         '2025-01-27 10:00:00', 30000, 'ADEQUATE');
 
 -- Insert initial data into Ticket_Types table
-INSERT INTO Ticket_Types (concert_id, type_name, price)
+INSERT INTO ticket_types (concert_id, type_name, price)
 VALUES (1, 'VIP', 3680.00),
        (1, 'Gold', 2780.00),
        (1, 'Silver', 2250.00),
@@ -192,7 +192,7 @@ VALUES (1, 'VIP', 3680.00),
        (6, 'Back Row', 1099.00);
 
 -- Insert initial data into Ticket_Inventory table
-INSERT INTO Ticket_Inventory (ticket_type_id, available_quantity, sold_quantity)
+INSERT INTO ticket_inventory (ticket_type_id, available_quantity, sold_quantity)
 VALUES (1, 0, 5000),     -- Sold out
        (2, 10000, 5000),
        (3, 2000, 2000),
@@ -237,36 +237,36 @@ VALUES (1, 0, 5000),     -- Sold out
        (42, 6000, 0);
 
 -- Insert initial data into Orders table
-INSERT INTO Orders (user_id, total_price, status, payment_method)
+INSERT INTO orders (user_id, total_price, status, payment_method)
 VALUES (1, 450.00, 'completed', 'credit_card'),
        (2, 350.00, 'completed', 'paypal');
 
 -- Insert initial data into Order_Tickets table
-INSERT INTO Order_Tickets (order_id, ticket_type_id, quantity, price)
+INSERT INTO order_tickets (order_id, ticket_type_id, quantity, price)
 VALUES (1, 1, 1, 3680.00),
        (1, 2, 1, 2780.00),
        (2, 3, 2, 4500.00);
 
 -- Insert initial data into Payments table
-INSERT INTO Payments (order_id, amount, payment_status, payment_method)
+INSERT INTO payments (order_id, amount, payment_status, payment_method)
 VALUES (1, 6460.00, 'completed', 'credit_card'),
        (2, 4500.00, 'completed', 'paypal');
 
 -- Insert initial data into Tickets table
-INSERT INTO Tickets (order_item_id, user_id, ticket_number, seat_number, status)
+INSERT INTO tickets (order_item_id, user_id, ticket_number, seat_number, status)
 VALUES (1, 1, 'TICKET12345', 'A1', 'issued'),
        (2, 1, 'TICKET12346', 'A2', 'issued'),
        (3, 2, 'TICKET12347', 'B1', 'issued'),
        (3, 2, 'TICKET12348', 'B2', 'issued');
 
 -- Insert initial data into Merchandise table
-INSERT INTO Merchandise (concert_id, name, description, price, quantity, available_quantity, image_url)
+INSERT INTO merchandise (concert_id, name, description, price, quantity, available_quantity, image_url)
 VALUES (1, 'MOON MUSiC ECORECORD LP', 'MOON MUSiC ECORECORD LP', 30.50, 1000, 1000, 'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp'),
        (1, 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 220.99, 1000, 1000, 'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png'),
        (1, 'Coldplay T-Shirt', 'Official Coldplay T-Shirt', 5.00, 1000, 1000, 'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg'),
        (1, 'Planting a tree', 'Plant a tree for a desert area and expand the oasis！', 15.00, 500, 500, 'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg');
 
 -- Insert initial data into Order_Merchandise table
-INSERT INTO Order_Merchandise (order_id, merchandise_id, quantity, price)
+INSERT INTO order_merchandise (order_id, merchandise_id, quantity, price)
 VALUES (1, 1, 2, 50.00),
        (2, 2, 1, 15.00);
