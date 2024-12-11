@@ -3,6 +3,7 @@ package com.coldplay.coldplay_ticket_booking_system_backend.service;
 
 import com.coldplay.coldplay_ticket_booking_system_backend.dto.order.OrderRequest;
 import com.coldplay.coldplay_ticket_booking_system_backend.dto.order.OrderResponse;
+import com.coldplay.coldplay_ticket_booking_system_backend.dto.order.OrderStatusUpdateRequest;
 import com.coldplay.coldplay_ticket_booking_system_backend.model.*;
 import com.coldplay.coldplay_ticket_booking_system_backend.repository.*;
 import lombok.AllArgsConstructor;
@@ -112,5 +113,16 @@ public class OrderService {
         orderResponse.setMerchandiseInfo(merchandiseInfoList);
 
         return orderResponse;
+    }
+
+    @Transactional
+    public OrderResponse updateOrderStatus(Integer orderId, OrderStatusUpdateRequest orderStatusUpdateRequest) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new IllegalArgumentException("Order not found"));
+
+        order.setStatus(orderStatusUpdateRequest.getStatus());
+        orderRepository.save(order);
+
+        return getOrderResponseById(orderId);
     }
 }
