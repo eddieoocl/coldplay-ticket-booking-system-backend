@@ -21,6 +21,7 @@ public class OrderResponse {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class TicketInfo {
+        private Integer id;
         private String ticketType;
         private String moviegoer;
         private String ticketNumber;
@@ -31,6 +32,7 @@ public class OrderResponse {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class MerchandiseInfo {
+        private Integer merchandiseId;
         private String merchandiseName;
         private Double price;
         private int count;

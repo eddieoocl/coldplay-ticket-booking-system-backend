@@ -88,6 +88,7 @@ public class OrderService {
         List<OrderTicket> orderTicket = orderTicketRepository.findByOrder_OrderId(orderId);
         List<OrderResponse.TicketInfo> ticketInfoList = orderTicket.stream().map(ticket -> {
             OrderResponse.TicketInfo ticketInfo = new OrderResponse.TicketInfo();
+            ticketInfo.setId(ticket.getOrderTicketId());
             ticketInfo.setTicketType(ticket.getTicketType().getTypeName());
             ticketInfo.setMoviegoer(ticket.getMoviegoer());
             ticketInfo.setPrice(ticket.getPrice());
@@ -103,6 +104,7 @@ public class OrderService {
         List<OrderMerchandise> orderMerchandise = orderMerchandiseRepository.findByOrder_OrderId(orderId);
         List<OrderResponse.MerchandiseInfo> merchandiseInfoList = orderMerchandise.stream().map(merchandise -> {
             OrderResponse.MerchandiseInfo merchandiseInfo = new OrderResponse.MerchandiseInfo();
+            merchandiseInfo.setMerchandiseId(merchandise.getMerchandise().getMerchandiseId());
             merchandiseInfo.setMerchandiseName(merchandise.getMerchandise().getName());
             merchandiseInfo.setPrice(merchandise.getPrice());
             merchandiseInfo.setCount(merchandise.getQuantity());
