@@ -129,16 +129,16 @@ INSERT INTO Concerts (name, date, venue, city, country, description, image_url, 
                       total_seats, status)
 VALUES ('Coldplay Live', '2025-02-22 20:00:00', 'Zayed Sports City Stadium', 'Abu Dhabi', 'USA',
         'Coldplay live concert', 'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/20231008144859_27550.png',
-        '2025-01-20 10:00:00', '2025-01-27 10:00:00', 30000, 'ADEQUATE'),
+        '2025-01-20 10:00:00', '2025-01-27 10:00:00', 30000, 'SOLD OUT'),
        ('Coldplay Live', '2025-02-23 20:00:00', 'Zayed Sports City Stadium', 'Abu Dhabi', 'USA',
         'Coldplay live concert', 'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/20231008144859_27550.png',
-        '2025-01-20 10:00:00', '2025-01-27 10:00:00', 30000, 'ADEQUATE'),
+        '2025-01-20 10:00:00', '2025-01-27 10:00:00', 30000, 'SOLD OUT'),
        ('Coldplay Live', '2025-02-24 20:00:00', 'Zayed Sports City Stadium', 'Abu Dhabi', 'USA',
         'Coldplay live concert', 'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/20231008144859_27550.png',
         '2025-01-20 10:00:00', '2025-01-27 10:00:00', 30000, 'ADEQUATE'),
        ('Coldplay Live', '2025-03-11 20:00:00', 'Kai Tak Stadium', 'Hong Kong', 'China', 'Coldplay live concert',
         'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/75b99f7c88df4ddeb3d8114545f89472.webp', '2025-01-20 10:00:00',
-        '2025-01-27 10:00:00', 30000, 'ADEQUATE'),
+        '2025-01-27 10:00:00', 30000, 'SOLD OUT'),
        ('Coldplay Live', '2025-03-12 20:00:00', 'Kai Tak Stadium', 'Hong Kong', 'China', 'Coldplay live concert',
         'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/75b99f7c88df4ddeb3d8114545f89472.webp', '2025-01-20 10:00:00',
         '2025-01-27 10:00:00', 30000, 'ADEQUATE'),
@@ -261,8 +261,10 @@ VALUES (1, 1, 'TICKET12345', 'A1', 'issued'),
 
 -- Insert initial data into Merchandise table
 INSERT INTO Merchandise (concert_id, name, description, price, quantity, available_quantity, image_url)
-VALUES (1, 'Coldplay T-Shirt', 'Official Coldplay T-Shirt', 25.00, 1000, 1000, 'http://example.com/merch1.jpg'),
-       (2, 'Coldplay Poster', 'Official Coldplay Poster', 15.00, 500, 500, 'http://example.com/merch2.jpg');
+VALUES (1, 'MOON MUSiC ECORECORD LP', 'MOON MUSiC ECORECORD LP', 30.50, 1000, 1000, 'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp'),
+       (1, 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 220.99, 1000, 1000, 'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png'),
+       (1, 'Coldplay T-Shirt', 'Official Coldplay T-Shirt', 5.00, 1000, 1000, 'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg'),
+       (1, 'Planting a tree', 'Plant a tree for a desert area and expand the oasis！', 15.00, 500, 500, 'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg');
 
 -- Insert initial data into Order_Merchandise table
 INSERT INTO Order_Merchandise (order_id, merchandise_id, quantity, price)
