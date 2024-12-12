@@ -308,7 +308,7 @@ VALUES (1, 'MOON MUSiC ECORECORD LP', 'MOON MUSiC ECORECORD LP', 30.50, 1000, 10
        (6, 'Coldplay T-Shirt', 'Official Coldplay T-Shirt', 5.00, 1000, 1000,
         'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg'),
        (6, 'Planting a tree', 'Plant a tree for a desert area and expand the oasis！', 15.00, 500, 500,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg')
 ;
 
 -- Insert initial data into Order_Merchandise table
