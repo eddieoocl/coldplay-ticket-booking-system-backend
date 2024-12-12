@@ -104,6 +104,7 @@ CREATE TABLE merchandise
     quantity           INT            NOT NULL,               -- 商品数量
     available_quantity INT            NOT NULL,               -- 当前库存
     image_url          VARCHAR(255),                          -- 商品图片
+    is_charity         BOOLEAN DEFAULT FALSE,                 -- 是否为慈善商品
     FOREIGN KEY (concert_id) REFERENCES Concerts (concert_id) -- 外键关联演唱会表
 );
 
@@ -260,55 +261,60 @@ VALUES (1, 1, 'TICKET12345', 'A1 Block 16', 'issued'),
        (3, 2, 'TICKET12348', 'B2 Block 23', 'issued');
 
 -- Insert initial data into Merchandise table
-INSERT INTO merchandise (concert_id, name, description, price, quantity, available_quantity, image_url)
+INSERT INTO merchandise (concert_id, name, description, price, quantity, available_quantity, image_url, is_charity)
 VALUES (1, 'MOON MUSiC ECORECORD LP', 'MOON MUSiC ECORECORD LP', 30.50, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp',
+        false),
        (1, 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 220.99, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png', false),
        (1, 'Coldplay T-Shirt', 'Official Coldplay T-Shirt', 5.00, 1000, 1000,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg', false),
        (1, 'Planting a tree', 'Plant a tree for a desert area and expand the oasis！', 15.00, 500, 500,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg', true),
        (2, 'MOON MUSiC ECORECORD LP', 'MOON MUSiC ECORECORD LP', 30.50, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp',
+        false),
        (2, 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 220.99, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png', false),
        (2, 'Coldplay T-Shirt', 'Official Coldplay T-Shirt', 5.00, 1000, 1000,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg', false),
        (2, 'Planting a tree', 'Plant a tree for a desert area and expand the oasis！', 15.00, 500, 500,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg', true),
        (3, 'MOON MUSiC ECORECORD LP', 'MOON MUSiC ECORECORD LP', 30.50, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp',
+        false),
        (3, 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 220.99, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png', false),
        (3, 'Coldplay T-Shirt', 'Official Coldplay T-Shirt', 5.00, 1000, 1000,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg', false),
        (3, 'Planting a tree', 'Plant a tree for a desert area and expand the oasis！', 15.00, 500, 500,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg', true),
        (4, 'MOON MUSiC ECORECORD LP', 'MOON MUSiC ECORECORD LP', 30.50, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp',
+        false),
        (4, 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 220.99, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png', false),
        (4, 'Coldplay T-Shirt', 'Official Coldplay T-Shirt', 5.00, 1000, 1000,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg', false),
        (4, 'Planting a tree', 'Plant a tree for a desert area and expand the oasis！', 15.00, 500, 500,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg', true),
        (5, 'MOON MUSiC ECORECORD LP', 'MOON MUSiC ECORECORD LP', 30.50, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp', false),
        (5, 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 220.99, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png', false),
        (5, 'Coldplay T-Shirt', 'Official Coldplay T-Shirt', 5.00, 1000, 1000,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg', false),
        (5, 'Planting a tree', 'Plant a tree for a desert area and expand the oasis！', 15.00, 500, 500,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg', true),
        (6, 'MOON MUSiC ECORECORD LP', 'MOON MUSiC ECORECORD LP', 30.50, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/06/Standard_Vinyl_Pink_220170226EC2NDIMAGE-600x600.webp',
+        false),
        (6, 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 'MOON MUSiC (FULL MOON EDITION) DIGITAL', 220.99, 1000, 1000,
-        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png'),
+        'https://www.coldplay.com/wp/wp-content/uploads/2024/10/FM-600x600.png', false),
        (6, 'Coldplay T-Shirt', 'Official Coldplay T-Shirt', 5.00, 1000, 1000,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg'),
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/t.jpg', false),
        (6, 'Planting a tree', 'Plant a tree for a desert area and expand the oasis！', 15.00, 500, 500,
-        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg')
+        'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/tree.jpg', true)
 ;
 
 -- Insert initial data into Order_Merchandise table
