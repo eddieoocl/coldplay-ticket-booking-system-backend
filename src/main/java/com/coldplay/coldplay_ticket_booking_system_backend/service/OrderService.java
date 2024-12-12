@@ -50,7 +50,6 @@ public class OrderService {
             orderTicket.setOrder(order);
             orderTicket.setTicketType(ticketType);
             orderTicket.setQuantity(1); // Assuming 1 ticket per moviegoer
-            orderTicket.setMoviegoer(null);
             orderTicket.setPrice(ticketType.getPrice());
             orderTicketRepository.save(orderTicket);
 
