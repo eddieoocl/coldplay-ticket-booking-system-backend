@@ -130,22 +130,22 @@ INSERT INTO concerts (name, date, venue, city, country, description, image_url, 
                       total_seats, status)
 VALUES ('Coldplay Live', '2025-02-22 20:00:00', 'Zayed Sports City Stadium', 'Abu Dhabi', 'USA',
         'Coldplay live concert', 'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/20231008144859_27550.png',
-        '2025-01-20 10:00:00', '2025-01-27 10:00:00', 30000, 'SOLD OUT'),
+        '2025-01-20 10:00:00', '2025-01-27 10:00:00', 30000, 'BUY NOW'),
        ('Coldplay Live', '2025-02-23 20:00:00', 'Zayed Sports City Stadium', 'Abu Dhabi', 'USA',
         'Coldplay live concert', 'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/20231008144859_27550.png',
         '2025-01-20 10:00:00', '2025-01-27 10:00:00', 30000, 'SOLD OUT'),
        ('Coldplay Live', '2025-02-24 20:00:00', 'Zayed Sports City Stadium', 'Abu Dhabi', 'USA',
         'Coldplay live concert', 'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/20231008144859_27550.png',
-        '2025-01-20 10:00:00', '2025-01-27 10:00:00', 30000, 'ADEQUATE'),
+        '2025-01-20 10:00:00', '2025-01-27 10:00:00', 30000, 'BUY NOW'),
        ('Coldplay Live', '2025-03-11 20:00:00', 'Kai Tak Stadium', 'Hong Kong', 'China', 'Coldplay live concert',
         'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/75b99f7c88df4ddeb3d8114545f89472.webp', '2025-01-20 10:00:00',
         '2025-01-27 10:00:00', 30000, 'SOLD OUT'),
        ('Coldplay Live', '2025-03-12 20:00:00', 'Kai Tak Stadium', 'Hong Kong', 'China', 'Coldplay live concert',
         'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/75b99f7c88df4ddeb3d8114545f89472.webp', '2025-01-20 10:00:00',
-        '2025-01-27 10:00:00', 30000, 'ADEQUATE'),
+        '2025-01-27 10:00:00', 30000, 'BUY NOW'),
        ('Coldplay Live', '2025-03-13 20:00:00', 'Kai Tak Stadium', 'Hong Kong', 'China', 'Coldplay live concert',
         'https://ita-ticket.oss-cn-guangzhou.aliyuncs.com/75b99f7c88df4ddeb3d8114545f89472.webp', '2025-01-20 10:00:00',
-        '2025-01-27 10:00:00', 30000, 'ADEQUATE');
+        '2025-01-27 10:00:00', 30000, 'BUY NOW');
 
 -- Insert initial data into Ticket_Types table
 INSERT INTO ticket_types (concert_id, type_name, price)
