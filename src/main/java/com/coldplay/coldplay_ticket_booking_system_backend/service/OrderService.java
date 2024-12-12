@@ -123,6 +123,7 @@ public class OrderService {
             merchandiseInfo.setMerchandiseName(merchandise.getMerchandise().getName());
             merchandiseInfo.setPrice(merchandise.getPrice());
             merchandiseInfo.setCount(merchandise.getQuantity());
+            merchandiseInfo.setCharity(merchandise.getMerchandise().getIsCharity());
             return merchandiseInfo;
         }).toList();
 
