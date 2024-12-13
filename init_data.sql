@@ -131,28 +131,28 @@ VALUES (1, 1, 0, 5000),     -- Sold out
        (41, 41, 8000, 0),
        (42, 42, 6000, 0);
 
--- Insert initial data into Orders table
-INSERT INTO orders (order_id, user_id, total_price, status, payment_method, order_date)
-VALUES (1, 1, 450.00, 'completed', 'credit_card', '2025-02-22 20:00:00'),
-       (2, 2, 350.00, 'completed', 'paypal', '2025-02-22 20:00:00');
-
--- Insert initial data into Order_Tickets table
-INSERT INTO order_tickets (order_ticket_id, order_id, ticket_type_id, quantity, price)
-VALUES (1, 1, 1, 1, 3680.00),
-       (2, 1, 2, 1, 2780.00),
-       (3, 2, 3, 2, 4500.00);
-
--- Insert initial data into Payments table
-INSERT INTO payments (payment_id, order_id, amount, payment_status, payment_method, payment_date)
-VALUES (1, 1, 6460.00, 'completed', 'credit_card', '2025-02-22 20:00:00'),
-       (2, 2, 4500.00, 'completed', 'paypal', '2025-02-22 20:00:00');
-
--- Insert initial data into Tickets table
-INSERT INTO tickets (ticket_id, order_item_id, user_id, ticket_number, seat_number, status, issue_date)
-VALUES (1, 1, 1, 'TICKET12345', 'A1 Block 16', 'issued', '2025-02-22 20:00:00'),
-       (2, 2, 1, 'TICKET12346', 'A2 Block 6', 'issued', '2025-02-22 20:00:00'),
-       (3, 3, 2, 'TICKET12347', 'B1 Block 3', 'issued', '2025-02-22 20:00:00'),
-       (4, 3, 2, 'TICKET12348', 'B2 Block 23', 'issued', '2025-02-22 20:00:00');
+-- -- Insert initial data into Orders table
+-- INSERT INTO orders (order_id, user_id, total_price, status, payment_method, order_date)
+-- VALUES (1, 1, 450.00, 'completed', 'credit_card', '2025-02-22 20:00:00'),
+--        (2, 2, 350.00, 'completed', 'paypal', '2025-02-22 20:00:00');
+--
+-- -- Insert initial data into Order_Tickets table
+-- INSERT INTO order_tickets (order_ticket_id, order_id, ticket_type_id, quantity, price)
+-- VALUES (1, 1, 1, 1, 3680.00),
+--        (2, 1, 2, 1, 2780.00),
+--        (3, 2, 3, 2, 4500.00);
+--
+-- -- Insert initial data into Payments table
+-- INSERT INTO payments (payment_id, order_id, amount, payment_status, payment_method, payment_date)
+-- VALUES (1, 1, 6460.00, 'completed', 'credit_card', '2025-02-22 20:00:00'),
+--        (2, 2, 4500.00, 'completed', 'paypal', '2025-02-22 20:00:00');
+--
+-- -- Insert initial data into Tickets table
+-- INSERT INTO tickets (ticket_id, order_item_id, user_id, ticket_number, seat_number, status, issue_date)
+-- VALUES (1, 1, 1, 'TICKET12345', 'A1 Block 16', 'issued', '2025-02-22 20:00:00'),
+--        (2, 2, 1, 'TICKET12346', 'A2 Block 6', 'issued', '2025-02-22 20:00:00'),
+--        (3, 3, 2, 'TICKET12347', 'B1 Block 3', 'issued', '2025-02-22 20:00:00'),
+--        (4, 3, 2, 'TICKET12348', 'B2 Block 23', 'issued', '2025-02-22 20:00:00');
 
 -- Insert initial data into Merchandise table
 INSERT INTO merchandise (merchandise_id, concert_id, name, description, price, quantity, available_quantity, image_url, is_charity)
