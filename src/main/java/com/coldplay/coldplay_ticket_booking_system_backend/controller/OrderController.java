@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/orders")
 @AllArgsConstructor
@@ -32,5 +34,11 @@ public class OrderController {
     public ResponseEntity<OrderResponse> updateOrderStatus(@PathVariable Integer orderId, @RequestBody OrderStatusUpdateRequest orderStatusUpdateRequest) {
         OrderResponse orderResponse = orderService.updateOrderStatus(orderId, orderStatusUpdateRequest);
         return ResponseEntity.ok(orderResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<OrderResponse>> getAllOrders() {
+        List<OrderResponse> orderResponses = orderService.getAllOrders();
+        return ResponseEntity.ok(orderResponses);
     }
 }

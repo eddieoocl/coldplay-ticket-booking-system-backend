@@ -46,12 +46,15 @@ public class OrderService {
             TicketType ticketType = ticketTypeRepository.findById(ticketInfo.getTicketTypeId())
                     .orElseThrow(() -> new IllegalArgumentException("Ticket type not found"));
 
-            OrderTicket orderTicket = new OrderTicket();
-            orderTicket.setOrder(order);
-            orderTicket.setTicketType(ticketType);
-            orderTicket.setQuantity(1); // Assuming 1 ticket per moviegoer
-            orderTicket.setPrice(ticketType.getPrice());
-            orderTicketRepository.save(orderTicket);
+            Integer count = ticketInfo.getCount();
+            for (int i = 0; i < count; i++) {
+                OrderTicket orderTicket = new OrderTicket();
+                orderTicket.setOrder(order);
+                orderTicket.setTicketType(ticketType);
+                orderTicket.setQuantity(1); // Assuming 1 ticket per moviegoer
+                orderTicket.setPrice(ticketType.getPrice());
+                orderTicketRepository.save(orderTicket);
+            }
 
             totalPrice += ticketType.getPrice();
         }
@@ -60,12 +63,15 @@ public class OrderService {
             Merchandise merchandise = merchandiseRepository.findById(merchandiseInfo.getMerchandiseId())
                     .orElseThrow(() -> new IllegalArgumentException("Merchandise not found"));
 
-            OrderMerchandise orderMerchandise = new OrderMerchandise();
-            orderMerchandise.setOrder(order);
-            orderMerchandise.setMerchandise(merchandise);
-            orderMerchandise.setQuantity(merchandiseInfo.getCount());
-            orderMerchandise.setPrice(merchandise.getPrice() * merchandiseInfo.getCount());
-            orderMerchandiseRepository.save(orderMerchandise);
+            Integer count = merchandiseInfo.getCount();
+            for (int i = 0; i < count; i++) {
+                OrderMerchandise orderMerchandise = new OrderMerchandise();
+                orderMerchandise.setOrder(order);
+                orderMerchandise.setMerchandise(merchandise);
+                orderMerchandise.setQuantity(merchandiseInfo.getCount());
+                orderMerchandise.setPrice(merchandise.getPrice() * merchandiseInfo.getCount());
+                orderMerchandiseRepository.save(orderMerchandise);
+            }
 
             totalPrice += merchandise.getPrice() * merchandiseInfo.getCount();
         }
@@ -90,7 +96,7 @@ public class OrderService {
         List<OrderTicket> orderTicket = orderTicketRepository.findByOrder_OrderId(orderId);
         Integer ticketTypeId = orderTicket.get(0).getTicketType().getTicketTypeId();
         Optional<TicketType> ticketType = ticketTypeRepository.findById(ticketTypeId);
-        if(ticketType.isPresent()){
+        if (ticketType.isPresent()) {
             Concert concert = ticketType.get().getConcert();
             OrderResponse.ConcertData concertData = new OrderResponse.ConcertData();
             concertData.setId(concert.getConcertId().toString());
@@ -141,5 +147,12 @@ public class OrderService {
         orderRepository.save(order);
 
         return getOrderResponseById(orderId);
+    }
+
+    public List<OrderResponse> getAllOrders() {
+        List<Order> orders = orderRepository.findAll();
+        return orders.stream()
+                .map(order -> getOrderResponseById(order.getOrderId()))
+                .toList();
     }
 }
